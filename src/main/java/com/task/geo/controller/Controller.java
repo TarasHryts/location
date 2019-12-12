@@ -8,6 +8,7 @@ import com.task.geo.services.GeoIpDataBaseServices;
 import java.time.LocalTime;
 import java.time.ZoneOffset;
 import java.time.temporal.ChronoField;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,11 +16,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/geoip")
+@RequestMapping
 public class Controller {
+    private static final Logger logger = Logger.getLogger(Controller.class);
     @Autowired
     private GeoIpDataBaseServices geoIpDataBaseServices;
-    @GetMapping("/{canonicalIPv4Representation}")
+    @GetMapping("/geoip/{canonicalIPv4Representation}")
     public Location findLocation(@PathVariable(value = "canonicalIPv4Representation")
                                                 String canonicalIPv4Representation) {
         int start = LocalTime.now(ZoneOffset.UTC).get(ChronoField.MILLI_OF_DAY);
@@ -28,8 +30,7 @@ public class Controller {
         Location location = GeoIpConverterToLocation
                 .createGeoLocationFromDB(geoIpDataBase, canonicalIPv4Representation);
         int finish = LocalTime.now(ZoneOffset.UTC).get(ChronoField.MILLI_OF_DAY);
-        System.out.println(start - finish);
+        logger.info(String.format("Request completed in %d milliseconds", finish-start));
         return location;
-
     }
 }
