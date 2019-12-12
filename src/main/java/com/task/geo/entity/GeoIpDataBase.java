@@ -28,7 +28,7 @@ public class GeoIpDataBase {
     @Column(name = "city_name")
     private String cityName;
     @Column(name = "latitude")
-    private Double Latitude;
+    private Double latitude;
     @Column(name = "longitude")
-    private Double Longitude;
+    private Double longitude;
 }

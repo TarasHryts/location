@@ -21,16 +21,17 @@ public class Controller {
     private static final Logger logger = Logger.getLogger(Controller.class);
     @Autowired
     private GeoIpDataBaseServices geoIpDataBaseServices;
+
     @GetMapping("/geoip/{canonicalIPv4Representation}")
     public Location findLocation(@PathVariable(value = "canonicalIPv4Representation")
-                                                String canonicalIPv4Representation) {
+                                         String canonicalIPv4Representation) {
         int start = LocalTime.now(ZoneOffset.UTC).get(ChronoField.MILLI_OF_DAY);
         GeoIpDataBase geoIpDataBase = geoIpDataBaseServices
                 .findIp(IpConverter.stringToLong(canonicalIPv4Representation));
         Location location = GeoIpConverterToLocation
                 .createGeoLocationFromDB(geoIpDataBase, canonicalIPv4Representation);
         int finish = LocalTime.now(ZoneOffset.UTC).get(ChronoField.MILLI_OF_DAY);
-        logger.info(String.format("Request completed in %d milliseconds", finish-start));
+        logger.info(String.format("Request completed in %d milliseconds", finish - start));
         return location;
     }
 }

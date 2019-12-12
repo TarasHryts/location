@@ -11,7 +11,7 @@ public class GeoIpConverterToLocation {
         location.setCityName(geoIpDataBase.getCityName());
         location.setCountryCode(geoIpDataBase.getCountryCode());
         location.setCountryName(geoIpDataBase.getCountryName());
-        location.setIPv4(IpConverter.stringToLong(canonicalIPv4Representation));
+        location.setIpv4(IpConverter.stringToLong(canonicalIPv4Representation));
         location.setLatitude(geoIpDataBase.getLatitude());
         location.setLongitude(geoIpDataBase.getLongitude());
         location.setRegionName(geoIpDataBase.getRegionName());

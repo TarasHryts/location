@@ -24,7 +24,7 @@ public class Location {
     private String countryName;
     @Id
     @Column(name = "ipv4")
-    private Long IPv4;
+    private Long ipv4;
     @Column(name = "latitude")
     private Double latitude;
     @Column(name = "longitude")
