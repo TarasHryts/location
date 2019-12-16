@@ -11,7 +11,7 @@ public class IpConverter {
         }
         for (int i = 3; i >= 0; i--) {
             long ip = Long.parseLong(ipParts[3 - i]);
-            if (ip > 255L) {
+            if ((ip < 0L) && (ip > 255L)) {
                 throw new IncorrectIpException("Incorrect ip address " + stringIp);
             }
             result |= ip << (i * 8);

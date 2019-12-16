@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class GeoIpDataBaseServicesImpl implements GeoIpDataBaseServices {
-    private GeoIpDataBaseRepository geoIpDataBaseRepository;
+    private final GeoIpDataBaseRepository geoIpDataBaseRepository;
 
     @Autowired
     public GeoIpDataBaseServicesImpl(GeoIpDataBaseRepository geoIpDataBaseRepository) {
