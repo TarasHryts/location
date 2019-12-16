@@ -2,9 +2,7 @@ package com.task.geo.services.ipml;
 
 import static org.mockito.Mockito.when;
 
-import com.task.geo.converter.IpConverter;
 import com.task.geo.entity.GeoIpDataBase;
-import com.task.geo.exception.IncorrectIpException;
 import com.task.geo.repository.GeoIpDataBaseRepository;
 import com.task.geo.services.GeoIpDataBaseServices;
 import org.junit.Assert;
@@ -29,11 +27,5 @@ public class GeoIpDataBaseServicesImplTest {
     public void findIpOk() {
         when(geoIpDataBaseRepository.findIp(16777217L)).thenReturn(geoIpDataBase);
         Assert.assertEquals(geoIpDataBase, geoIpDataBaseServices.findIp(16777217L));
-    }
-
-    @Test(expected = IncorrectIpException.class)
-    public void incorrectIpException() {
-        IpConverter.stringToLong("1.1.1.300");
-        IpConverter.stringToLong("1.1.1");
     }
 }
