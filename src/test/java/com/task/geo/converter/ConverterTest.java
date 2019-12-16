@@ -30,5 +30,4 @@ public class ConverterTest {
         IpConverter.stringToLong("1.1.1.300");
         IpConverter.stringToLong("1.1.1");
     }
-
 }
